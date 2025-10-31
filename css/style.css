@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    color: #fff;
+}
+
+.game-board {
+    width: 100%;
+    height: 500px;
+    border-bottom: 15px solid #444;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#111, #333);
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    filter: grayscale(100%) brightness(0.8);
+    animation: pipe-animation 1.5s infinite linear;
+}
+
+.mario {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.clouds {
+    width: 550px;
+    position: absolute;
+    opacity: 0.3;
+    filter: brightness(0.8);
+    animation: clouds-animation 12s infinite linear;
+}
+
+.jump {
+    animation: jump 500ms ease-out;
+}
+
+
+@keyframes clouds-animation {
+    from { right: -550px; }
+    to { right: 100%; }
+}
+
+@keyframes jump {
+    0% { bottom: 0; }
+    35% { bottom: 180px; }
+    50% { bottom: 180px; }
+    70% { bottom: 180px; }
+    100% { bottom: 0; }
+}
+
+@keyframes pipe-animation {
+    from { right: 0; }
+    to { right: 100%; }
+}
+
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    backdrop-filter: blur(4px);
+}
+
+.game-over-screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.game-over-screen h1 {
+    color: #fff;
+    font-size: 3.5em;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 0 0 10px #fff, 0 0 20px #999;
+    letter-spacing: 4px;
+    animation: fadePulse 1.2s infinite alternate;
+}
+
+@keyframes fadePulse {
+    from { opacity: 0.6; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.05); }
+}
+
+#restart-btn {
+    margin-top: 40px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    border: 3px solid #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+#restart-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 0 10px #fff;
+    transform: scale(1.1);
+}
+
+@keyframes shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-3px, 3px); }
+    50% { transform: translate(3px, -3px); }
+    75% { transform: translate(-3px, -3px); }
+    100% { transform: translate(0, 0); }
+}
